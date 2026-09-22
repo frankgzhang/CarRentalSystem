@@ -35,6 +35,14 @@ public class CarRentalSystem {
     }
 
     public Reservation makeReservation(CarType type, LocalDateTime startTime, int numberOfDays) {
+        if (numberOfDays <= 0) {
+            throw new IllegalArgumentException("Reserved number of days must be greater than 0");
+        }
+
+        if (startTime == null) {
+            throw new IllegalArgumentException("Start time cannot be null");
+        }
+
         LocalDateTime endTime = startTime.plusDays(numberOfDays);
 
         for (Car car : cars.get(type)) {

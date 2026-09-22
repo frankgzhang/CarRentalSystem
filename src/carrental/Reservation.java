@@ -11,6 +11,10 @@ public class Reservation {
         this.car = car;
         this.startTime = startTime;
         this.endTime = endTime;
+
+        if (!endTime.isAfter(startTime)) {
+            throw new IllegalArgumentException("End time must be after start time");
+        }
     }
 
     public Car getCar() {
