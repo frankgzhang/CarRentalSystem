@@ -45,7 +45,7 @@ public class CarRentalSystem {
             }
         }
 
-        throw new IllegalStateException("No " + type + "is available at this time");
+        throw new IllegalStateException("No " + type + " is available at this time");
     }
 
     private boolean checkCarAvailability(Car car, LocalDateTime requestedStartTime, LocalDateTime requestedEndTime) {
