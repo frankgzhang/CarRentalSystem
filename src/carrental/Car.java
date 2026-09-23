@@ -5,7 +5,7 @@ public class Car {
     private final CarType type;
 
     public Car(String id, CarType type) {
-        if (id == null || id.isBlank()) {
+        if (id == null || id.trim().isEmpty()) {
             throw new IllegalArgumentException("Car ID cannot be null or empty");
         }
 
