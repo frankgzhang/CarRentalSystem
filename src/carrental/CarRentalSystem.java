@@ -7,15 +7,15 @@ import java.util.Map;
 import java.util.List;
 
 public class CarRentalSystem {
-    private final Map<CarType, List<Car>> cars;
+    private final Map<CarType, List<Car>> carInventory;
     private final Map<String, List<Reservation>> reservations;
 
     public CarRentalSystem(int sedans, int suvs, int vans) {
-        cars = new HashMap<>();
+        carInventory = new HashMap<>();
         reservations = new HashMap<>();
 
         for (CarType type : CarType.values()) {
-            cars.put(type, new ArrayList<>());
+            carInventory.put(type, new ArrayList<>());
         }
 
         addCars(CarType.SEDAN, sedans);
@@ -26,9 +26,23 @@ public class CarRentalSystem {
     private void addCars(CarType type, int numberOfCars) {
         for (int i = 1; i <= numberOfCars; i ++) {
             String carId = type.name() + " " + i;
-            Car car = new Car(carId, type);
+            Car car;
 
-            cars.get(type).add(car);
+            switch (type) {
+                case SEDAN:
+                    car = new Sedan(carId);
+                    break;
+                case SUV:
+                    car = new SUV(carId);
+                    break;
+                case VAN:
+                    car = new Van(carId);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Car type not supported");
+            };
+
+            carInventory.get(type).add(car);
 
             reservations.put(carId, new ArrayList<>());
         }
@@ -39,13 +53,18 @@ public class CarRentalSystem {
             throw new IllegalArgumentException("Reserved number of days must be greater than 0");
         }
 
+        // Assumption: cannot reserve a car for more than a month
+        if (numberOfDays > 30) {
+            throw new IllegalArgumentException("Reserved number of days cannot exceed one month");
+        }
+
         if (startTime == null) {
             throw new IllegalArgumentException("Start time cannot be null");
         }
 
         LocalDateTime endTime = startTime.plusDays(numberOfDays);
 
-        for (Car car : cars.get(type)) {
+        for (Car car : carInventory.get(type)) {
             if (checkCarAvailability(car, startTime, endTime)) {
                 Reservation reservation = new Reservation(car, startTime, endTime);
                 reservations.get(car.getId()).add(reservation);
@@ -76,7 +95,7 @@ public class CarRentalSystem {
         LocalDateTime endTime = startTime.plusDays(numberOfDays);
         int carsLeft = 0;
 
-        for (Car car : cars.get(type)) {
+        for (Car car : carInventory.get(type)) {
             if (checkCarAvailability(car, startTime, endTime)) {
                 carsLeft++;
             }

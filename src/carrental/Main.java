@@ -24,11 +24,6 @@ public class Main {
         int sedansLeft = crs.getCarCount(CarType.SEDAN, startTime, 3);
         System.out.println("Sedans left: " + sedansLeft);
         System.out.println();
-
-        // Try to reserve another SEDAN when there are none left
-        Reservation thirdReservation = crs.makeReservation(CarType.SEDAN, startTime, 5);
-        System.out.println("Third reservation: ");
-        printReservation(thirdReservation);
     }
 
     private static void printReservation(Reservation r) {
