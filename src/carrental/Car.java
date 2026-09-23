@@ -6,6 +6,7 @@ public class Car {
     private final double carRate;
 
     public Car(String id, CarType type, double carRate) {
+        // Null and validation checks
         if (id == null || id.trim().isEmpty()) {
             throw new IllegalArgumentException("Car ID cannot be null or empty");
         }

@@ -14,6 +14,7 @@ public class Reservation {
         this.endTime = endTime;
         this.totalPrice = totalPrice;
 
+        // Ensure start time is before end time
         if (!endTime.isAfter(startTime)) {
             throw new IllegalArgumentException("End time must be after start time");
         }

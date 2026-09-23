@@ -67,7 +67,7 @@ public class CarRentalSystem {
         for (Car car : carInventory.get(type)) {
             if (checkCarAvailability(car, startTime, endTime)) {
                 double totalPrice = numberOfDays * car.getCarRate();
-                
+
                 Reservation reservation = new Reservation(car, startTime, endTime, totalPrice);
                 reservations.get(car.getId()).add(reservation);
                 return reservation;
