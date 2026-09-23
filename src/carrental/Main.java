@@ -24,6 +24,12 @@ public class Main {
         int sedansLeft = crs.getCarCount(CarType.SEDAN, startTime, 3);
         System.out.println("Sedans left: " + sedansLeft);
         System.out.println();
+
+        // Make a reservation for a VAN
+        Reservation thirdReservation = crs.makeReservation(CarType.VAN, startTime, 15);
+        System.out.println("Third reservation (VAN): ");
+        printReservation(thirdReservation);
+        System.out.println();
     }
 
     private static void printReservation(Reservation r) {
@@ -31,5 +37,6 @@ public class Main {
         System.out.println("CarType: " + r.getCar().getType());
         System.out.println("Start Time: " + r.getStartTime());
         System.out.println("End Time: " + r.getEndTime());
+        System.out.println("Total Price ($): " + r.getTotalPrice());
     }
 }
