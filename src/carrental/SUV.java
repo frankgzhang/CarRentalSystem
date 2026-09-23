@@ -1,9 +1,19 @@
 package carrental;
 
 public class SUV extends Car{
-    private static final double CAR_RATE = 30.0;
+    private double carRate;
 
-    public SUV(String id) {
-        super(id, CarType.SUV, CAR_RATE);
+    public SUV(String id, double rate) {
+        super(id, CarType.SUV);
+
+        if (rate <= 0) {
+            throw new IllegalArgumentException("Car rate must be > $0");
+        }
+        this.carRate = rate;
+    }
+
+    @Override
+    public double getCarRate() {
+        return carRate;
     }
 }
