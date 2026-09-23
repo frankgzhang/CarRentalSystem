@@ -1,7 +1,6 @@
 /* Test file that will contain unit testing */
 package carrental;
 
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -71,7 +70,7 @@ public class CarRentalSystemTest {
     @Test
     void independentCarTypes() {
         carRentalSystem.makeReservation(CarType.SEDAN, startTime, 3);
-        int suvsAvailable = carRentalSystem.getCarCount(CarType.SEDAN, startTime, 3);
+        int suvsAvailable = carRentalSystem.getCarCount(CarType.SUV, startTime, 3);
 
         assertEquals(1, suvsAvailable);
     }

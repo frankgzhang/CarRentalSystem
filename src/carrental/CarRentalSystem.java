@@ -30,13 +30,13 @@ public class CarRentalSystem {
 
             switch (type) {
                 case SEDAN:
-                    car = new Sedan(carId);
+                    car = new Sedan(carId, 20.0);
                     break;
                 case SUV:
-                    car = new SUV(carId);
+                    car = new SUV(carId, 30.0);
                     break;
                 case VAN:
-                    car = new Van(carId);
+                    car = new Van(carId, 50.0);
                     break;
                 default:
                     throw new IllegalArgumentException("Car type not supported");
